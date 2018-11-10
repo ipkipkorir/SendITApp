@@ -1,5 +1,6 @@
 
 parcels = []
+users = []
 
 class Parcel():
 	def __init__(self):
@@ -33,12 +34,16 @@ class Parcel():
 		return {'Parcels': self.db}, 200
 
 	""" Fetch all parcel delivery orders per specific user """
-	def get_all_parcels_per_user(self, user_id):
+	def get_all_parcels_per_user(self, userId):
+
+		parcels_per_user = []
 		for parcel in self.db:
-			if parcel['userId'] == userId:
-				return {'Parcels by user id {}'.format(userId), parcel}, 200
-			else:
-				return {'No delivery order by user id {}'.format(userId)}, 404
+			if userId == parcel['userId']:
+				parcels_per_user.append(parcel)
+		if len(parcels_per_user) != 0:
+			return {'Parcels for user {}'.format(userId): parcels_per_user}, 200	
+		else:
+			return {'Error': 'No delivery order by user id {}'.format(userId)}, 404
 
 	""" Cancel specific parcel delivery order """	
 	def cancel_parcel_order(self, parcelId):
@@ -48,3 +53,19 @@ class Parcel():
  			return {'Success': 'Delivery order successfully cancelled'}, 200
  		else:
  			return {'Error': 'Parcel delivery order {}'.format(parcelId) + ' does not exist'}, 404
+
+class User():
+	def __init__(self):
+		self.users = users
+
+	def create_user(self, email, firstName, lastName):
+		user = {
+				"userId": len(self.users) + 1,
+				"email": email,
+				"firstName": firstName,
+				"lastName": lastName
+		}
+		self.users.append(user)
+
+	def get_all_users(self):
+		return {'Users': self.users}, 200
