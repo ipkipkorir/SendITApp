@@ -11,6 +11,17 @@ Users can cancel a parcel delivery order.
 Users can see the details of a delivery order.
 Admin can change the status and present location of a parcel delivery order.
 
+How to run the application
+- Clone the repository link: https://github.com/ipkipkorir/SendITApp.git 
+- Install python 3 on your computer
+- Install and activate virtual environment on your local project directory
+- Install flask
+- Install flask restful
+- Install postman
+- Do flask run on the activated virtual environment
+- Test on Postman the endpoint given below
+
+
 Working API Endpoints:
 
 GET /parcels
@@ -22,9 +33,9 @@ Fetch a specific parcel delivery order
 GET /users/<userId>/parcels
 Fetch all parcel delivery orders by a specific user
 
-PUT /parcels/<parcelId>/cancel
-Cancel the specific parcel delivery order
-
 POST /parcels
 Create a parcel delivery order
 
+Non-working Endpoint
+PUT /parcels/<parcelId>/cancel
+Cancel the specific parcel delivery order
