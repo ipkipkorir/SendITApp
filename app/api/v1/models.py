@@ -45,14 +45,14 @@ class Parcel():
 		else:
 			return {'Error': 'No delivery order by user id {}'.format(userId)}, 404
 
-	""" Cancel specific parcel delivery order """	
+	""" Cancel specific parcel delivery order: change status from 'active' to 'cancel' """	
 	def cancel_parcel_order(self, parcelId):
- 		p = [parcel for parcel in self.db if parcelId == parcel['parcelId']]
- 		if p:
- 			self.db.remove(p)
- 			return {'Success': 'Delivery order successfully cancelled'}, 200
- 		else:
- 			return {'Error': 'Parcel delivery order {}'.format(parcelId) + ' does not exist'}, 404
+ 		for parcel in self.db:
+ 			if parcelId == parcel['parcelId']:
+ 				parcel['status'] = "Cancelled"
+ 				return {'Success': 'Delivery order successfully cancelled'}, 200
+ 			else:
+ 				return {'Error': 'Parcel delivery order {}'.format(parcelId) + ' does not exist'}, 404
 
 class User():
 	def __init__(self):
