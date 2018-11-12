@@ -22,7 +22,7 @@ class PostParcel(Resource, Parcel):
 					request.json['weight'],
 					request.json['status'],
 					request.json['userId'])
-		return order
+		return {"messge": "Parcel order successfully created"}, 201
 
 # Fetching specific parcel delivery order
 class GetSpecificParcel(Resource, Parcel):
