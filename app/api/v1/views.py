@@ -1,14 +1,10 @@
 from flask import Flask
 from flask import request, make_response
 from flask_restful import Resource, Api
-#import models
 from .models import Parcel, User
 
-# app = Flask(__name__)
-# api = Api(app)
-
 # Creating parcel delivery order
-class PostParcel(Resource, Parcel):
+class PostParcel(Resource):
 	def __init__(self):
 		self.parcel = Parcel()
 
@@ -22,7 +18,8 @@ class PostParcel(Resource, Parcel):
 					request.json['weight'],
 					request.json['status'],
 					request.json['userId'])
-		return {"messge": "Parcel order successfully created"}, 201
+
+		return {"Message": "Parcel order successfully created"}
 
 # Fetching specific parcel delivery order
 class GetSpecificParcel(Resource, Parcel):
@@ -43,7 +40,7 @@ class GetAllParcels(Resource, Parcel):
 		all_parcels = self.parcel.get_all_parcels()
 		return all_parcels
 
-""" Create user  """
+""" Create user class"""
 class CreateUser(Resource, User):
 	def __init__(self):
 		self.users = User()
@@ -74,7 +71,7 @@ class GetAllUsers(Resource, User):
 		return all_users
 
 # Cancelling specific parcel delivery order
-class RemoveSpecificParcel(Resource, Parcel):
+class CancelSpecificParcel(Resource, Parcel):
 	def __init__(self):
 		self.parcel = Parcel()	
 

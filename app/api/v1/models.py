@@ -18,6 +18,7 @@ class Parcel():
 					"parcelId": len(self.db) + 1,
 					"userId": userId
 		}
+		# Do validation of data before appending to the list
 		self.db.append(parcel)
 		# return parcel, 201
 
@@ -50,9 +51,10 @@ class Parcel():
  		for parcel in self.db:
  			if parcelId == parcel['parcelId']:
  				parcel['status'] = "Cancelled"
- 				return {'Success': 'Delivery order successfully cancelled'}, 200
+ 				message = {'Success': 'Delivery order successfully cancelled'}, 200
  			else:
- 				return {'Error': 'Parcel delivery order {}'.format(parcelId) + ' does not exist'}, 404
+ 				message = {'Error': 'Parcel delivery order {}'.format(parcelId) + ' does not exist'}, 404
+ 		return message
 
 class User():
 	def __init__(self):

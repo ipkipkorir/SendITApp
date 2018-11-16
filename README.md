@@ -35,7 +35,3 @@ Fetch all parcel delivery orders by a specific user
 
 POST /parcels
 Create a parcel delivery order
-
-Non-working Endpoint
-PUT /parcels/<parcelId>/cancel
-Cancel the specific parcel delivery order
